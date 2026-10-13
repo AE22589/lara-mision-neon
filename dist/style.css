@@ -75,3 +75,6 @@ body[data-progress=alley] .stage-node{animation:none}body[data-progress=alley] .
 
 /* Scene visibility takes precedence over responsive layouts. */
 main>section[hidden]{display:none!important}
+
+/* ID-level scene rules must also respect hidden. */
+:is(#intro,#choose,#map,#stage,#alley,#paths,#concert)[hidden]{display:none!important}
