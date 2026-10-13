@@ -78,3 +78,5 @@ main>section[hidden]{display:none!important}
 
 /* ID-level scene rules must also respect hidden. */
 :is(#intro,#choose,#map,#stage,#alley,#paths,#concert)[hidden]{display:none!important}
+
+@media(min-width:1000px){#map{max-width:none;width:100%;grid-template-columns:minmax(0,1fr) clamp(230px,20vw,290px);column-gap:18px}#map>.city,#map>.radio{align-self:center}#map>.radio{justify-content:center}#map>.radio img{height:clamp(140px,26vh,220px)}#map>.radio p{font-size:clamp(16px,1.35vw,20px)}}
