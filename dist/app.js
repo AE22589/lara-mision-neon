@@ -8,14 +8,14 @@ finaleMusic.volume=.45;
 music.volume=.45;
 let speechVersion=0,musicVersion=0;
 function cancelSpeech(){speechVersion++;window.speechSynthesis?.cancel();music.muted=false;}
-function screen(id){cancelSpeech();switchMusic(id);['intro','choose','map','stage','alley','paths','concert'].forEach(x=>$(x).hidden=x!==id);document.body.dataset.screen=id;window.scrollTo({top:0,behavior:'instant'});}
+function screen(id){cancelSpeech();switchMusic(id);['intro','choose','map','stage','alley','paths','concert','bonus'].forEach(x=>$(x).hidden=x!==id);document.body.dataset.screen=id;window.scrollTo({top:0,behavior:'instant'});}
 function tone(){if(!sound)return;try{audio??=new (window.AudioContext||window.webkitAudioContext)();audio.resume();const o=audio.createOscillator(),g=audio.createGain();o.connect(g);g.connect(audio.destination);o.frequency.value=660;g.gain.setValueAtTime(.035,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+.18);o.start();o.stop(audio.currentTime+.18);}catch{}}
 function spanishVoice(){
  const voices=window.speechSynthesis?.getVoices?.()||[];
  return voices.find(v=>/^es(?:-|_)/i.test(v.lang)&&/Elvira|Helena|Laura|Sabina|Paulina|Monica|Mónica|Luciana|Penelope|Penélope|Conchita|Mia|Mía|Dalia|Paloma|female|mujer/i.test(v.name))||voices.find(v=>/^es(?:-|_)/i.test(v.lang));
 }
 function switchMusic(id){
- const next=id==='concert'&&finaleActive?finaleMusic:backgroundMusic;
+ const next=(id==='concert'&&finaleActive)||id==='bonus'?finaleMusic:backgroundMusic;
  if(next===music)return;
  ++musicVersion;music.pause();music.currentTime=0;music.muted=false;music=next;music.muted=false;
  if(sound)playMusic();
